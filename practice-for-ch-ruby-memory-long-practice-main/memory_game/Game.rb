@@ -21,11 +21,12 @@ class Game
            
             if @previous_guess == ""
                 @previous_guess = self.make_guess
-                @board.render
+                @board.temp_render  
+                    
 
             else
                 @guessed_pos = self.make_guess
-              @board.render
+                @board.render
 
                 self.checker(@previous_guess, @guessed_pos)
             end

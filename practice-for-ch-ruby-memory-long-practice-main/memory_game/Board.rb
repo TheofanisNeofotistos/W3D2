@@ -30,10 +30,35 @@ def render
   end
 end
 
+def temp_render(pos)
+  (0...@grid.length).each do |i|
+    (0...@grid.length).each do |j|
+      print @grid[i][j].face_value if @grid[i][j].start_position == true 
+      print @grid[i][j].face_value if  [i,j] == pos
+      print " "
+    end
+  end
+
+
+
+  @grid.map do |row|
+    row.map do |ele|
+      print ele.face_value.to_s if ele.start_position == true 
+      print " "
+    end
+    puts
+  end
+end
+
+
 def clear
   @grid.map do |row|
     row.map do |ele|
-      print ele.start_position == true
+      if ele.start_position == true
+        ele.start_position 
+      else 
+       " "
+      end
       print " "
     end
     puts
@@ -42,7 +67,7 @@ end
 
 def won?
   @grid.all? do |row| 
-    row.all? { |ele| ele.reveal == ele.face_value }
+    row.all? { |ele| ele.start_position == true }
   end
 end
 
