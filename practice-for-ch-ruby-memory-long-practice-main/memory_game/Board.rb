@@ -13,15 +13,27 @@ def populate
   x = 0
   (0...@grid.length).each do |i|
     (0...@grid.length).each do |j| 
-      @grid[i][j] = new_dictionary[x]
+      @grid[i][j] = Card.new(new_dictionary[x])
       x += 1
     end
   end
-   @grid
+  #  @grid
 end 
 
 def render 
-  @grid.each{|ele| p ele.join(" ")}
+  @grid.map do |row|
+    row.map do |ele|
+      print ele.face_value.to_s
+      print " "
+    end
+    puts
+  end
+end
+
+def won?
+  @grid.all? do |row| 
+    row.all? { |ele| ele.reveal == ele.face_value }
+  end
 end
 
 end
