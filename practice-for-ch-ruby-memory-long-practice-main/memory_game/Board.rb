@@ -36,4 +36,21 @@ def won?
   end
 end
 
+def[](position)
+  row, col = position
+  @grid[row][col]
+end
+
+def []=(position,val)
+  row, col = position
+  @grid[row][col] = val
+end
+
+def reveal(guessed_pos)
+  row,col = guessed_pos
+  card = @grid[guessed_pos]
+
+  card.reveal
+end
+
 end
