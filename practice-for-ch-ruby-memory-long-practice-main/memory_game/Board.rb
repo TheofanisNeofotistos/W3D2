@@ -4,7 +4,7 @@ class Board
    
 def initialize
   @grid = Array.new(4){Array.new(4," ")}
-
+  self.populate
 end
 
 def populate
@@ -30,6 +30,16 @@ def render
   end
 end
 
+def clear
+  @grid.map do |row|
+    row.map do |ele|
+      print ele.start_position == true
+      print " "
+    end
+    puts
+  end
+end
+
 def won?
   @grid.all? do |row| 
     row.all? { |ele| ele.reveal == ele.face_value }
@@ -46,11 +56,10 @@ def []=(position,val)
   @grid[row][col] = val
 end
 
-def reveal(guessed_pos)
-  row,col = guessed_pos
-  card = @grid[guessed_pos]
-
-  card.reveal
+def reveal(pos)
+  row,col = pos
+  card = @grid[row][col]
+  card.face_value
 end
 
 end

@@ -2,30 +2,15 @@ class Card
   attr_reader :face_value, :start_position
   def initialize(face_value)
     @face_value = face_value
-    @start_position = false 
-  end
-
-  def face_up
-    true
-  end
-
-  def face_down
-    false
+    @start_position = false  # true == face up | false == face down
   end
 
   def card_information
-    self.reveal
+    @face_value
   end
 
   def hide
     return " "
-  end
-
-  def reveal
-    if self.face_up
-      return @face_value
-    end 
-    self.face_down
   end
 
   def to_s(face_value)
